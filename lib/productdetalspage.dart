@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shop/cartprovider.dart';
 import 'package:shop/productjson.dart';
 
 class ProductDetailsPage extends StatefulWidget {
@@ -14,6 +16,30 @@ class ProductDetailsPage extends StatefulWidget {
 
 class _ProductDetailsPageState extends State<ProductDetailsPage> {
   int selectedsizes = 0;
+  void onTap() {
+    if (selectedsizes != 0) {
+      final productModel = ProductModel.fromJson(widget.product);
+      final cartModel = CartModel(
+        id: productModel.id,
+        title: productModel.title,
+        price: productModel.price,
+        company: productModel.company,
+        size: selectedsizes,
+        imageUrl: productModel.imageUrl,
+      );
+
+      final cartprovider = Provider.of<CartProvider>(context, listen: false);
+      cartprovider.addProduct(cartModel);
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text("add sucessfully"),
+      ));
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Please select size")),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final data = ProductModel.fromJson(widget.product);
@@ -83,7 +109,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                       backgroundColor: Colors.amber,
                       minimumSize: const Size(double.infinity, 50),
                     ),
-                    onPressed: null,
+                    onPressed: onTap,
                     child: const Text(
                       'Add to cart',
                       style: TextStyle(
