@@ -95,7 +95,9 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                             // size chip
                             child: Chip(
                               label: Text(text),
-                              backgroundColor: selectedsizes == sized ? Colors.amber : null,
+                              backgroundColor: selectedsizes == sized
+                                  ? Colors.greenAccent
+                                  : null,
                             ),
                           ),
                         );
@@ -106,14 +108,14 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                   padding: const EdgeInsets.all(20.0),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.amber,
+                      backgroundColor: Colors.black,
                       minimumSize: const Size(double.infinity, 50),
                     ),
                     onPressed: onTap,
                     child: const Text(
                       'Add to cart',
                       style: TextStyle(
-                        color: Colors.black,
+                        color: Colors.white,
                         fontSize: 18,
                       ),
                     ),
