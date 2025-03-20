@@ -64,9 +64,8 @@ flutter:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
   assets:
-    - assets\images\Addidas.jpeg
-    - assets\images\bata.jpeg
-    - assets\images\Nike.png
+    - assets/images/
+   
     # - images/a_dot_ham.jpeg
 
 

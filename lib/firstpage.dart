@@ -72,10 +72,13 @@ class _MyfirstPageState extends State<MyfirstPage> {
                     },
                     //chip
                     child: Chip(
-                      backgroundColor: selectedFilters == filter ? Colors.orange : const Color.fromRGBO(245, 247, 249, 1),
+                      backgroundColor: selectedFilters == filter
+                          ? Colors.greenAccent
+                          : const Color.fromRGBO(245, 247, 249, 1),
                       label: Text(filter),
                       labelStyle: const TextStyle(fontSize: 16),
-                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 15),
                       side: const BorderSide(color: Colors.black45),
                     ),
                   ),
@@ -107,7 +110,9 @@ class _MyfirstPageState extends State<MyfirstPage> {
                       title: productModel.title,
                       price: productModel.price,
                       image: productModel.imageUrl,
-                      backgroundColor: index.isEven ? const Color(0xFFD8F0FD) : const Color(0xFFF5F7F9),
+                      backgroundColor: index.isEven
+                          ? const Color(0xFFD8F0FD)
+                          : const Color(0xFFF5F7F9),
                     );
                   }),
             ),

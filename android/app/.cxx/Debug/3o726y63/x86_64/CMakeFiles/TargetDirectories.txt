@@ -1,0 +1,2 @@
+/Users/krushnakantanayak/Dev/Projects/shopper-app/android/app/.cxx/Debug/3o726y63/x86_64/CMakeFiles/rebuild_cache.dir
+/Users/krushnakantanayak/Dev/Projects/shopper-app/android/app/.cxx/Debug/3o726y63/x86_64/CMakeFiles/edit_cache.dir
