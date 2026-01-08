@@ -11,9 +11,10 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int currentpage = 0;
-  List<Widget> pages = [
-    const MyfirstPage(),
-    const CartPage(),
+
+  final List<Widget> pages = const [
+    MyfirstPage(),
+    CartPage(),
   ];
 
   @override
@@ -24,19 +25,20 @@ class _MyHomePageState extends State<MyHomePage> {
         children: pages,
       ),
       bottomNavigationBar: BottomNavigationBar(
-          iconSize: 35,
-          selectedFontSize: 0,
-          unselectedFontSize: 0,
-          currentIndex: currentpage,
-          onTap: (value) {
-            setState(() {
-              currentpage = value;
-            });
-          },
-          items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: ""),
-            BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: ''),
-          ]),
+        iconSize: 35,
+        selectedFontSize: 0,
+        unselectedFontSize: 0,
+        currentIndex: currentpage,
+        onTap: (value) {
+          setState(() {
+            currentpage = value;
+          });
+        },
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: ""),
+          BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: ""),
+        ],
+      ),
     );
   }
 }

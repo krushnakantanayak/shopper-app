@@ -28,96 +28,117 @@ class _MyfirstPageState extends State<MyfirstPage> {
     );
 
     return Scaffold(
-      body: Column(
-        children: [
-          const Row(
-            children: [
-              // Tittle
-              Padding(
-                padding: EdgeInsets.all(20.0),
-                child: Text(
-                  "Shoes \n Collection",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
-                ),
-              ),
-              // Search box
-              Expanded(
-                child: TextField(
-                  decoration: InputDecoration(
-                    hintText: 'Search',
-                    prefixIcon: Icon(Icons.search),
-                    border: border,
-                    enabledBorder: border,
-                    focusedBorder: border,
-                  ),
-                ),
-              )
-            ],
-          ),
-          // Shoes Brand list chip
-          SizedBox(
-            height: 120,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: filters.length,
-              itemBuilder: (context, index) {
-                final filter = filters[index];
-                return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        selectedFilters = filter;
-                      });
-                    },
-                    //chip
-                    child: Chip(
-                      backgroundColor: selectedFilters == filter
-                          ? Colors.greenAccent
-                          : const Color.fromRGBO(245, 247, 249, 1),
-                      label: Text(filter),
-                      labelStyle: const TextStyle(fontSize: 16),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 15),
-                      side: const BorderSide(color: Colors.black45),
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        bottom: false,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            /// 🔝 TOP SECTION (Title + Search)
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              child: Row(
+                children: [
+                  // Title
+                  Expanded(
+                    flex: 2,
+                    child: Text(
+                      "Shoes \nCollection",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 30,
+                      ),
                     ),
                   ),
-                );
-              },
+
+                  SizedBox(width: 12),
+
+                  // Search box
+                  Expanded(
+                    flex: 2,
+                    child: TextField(
+                      decoration: InputDecoration(
+                        hintText: 'Search',
+                        prefixIcon: Icon(Icons.search),
+                        border: border,
+                        enabledBorder: border,
+                        focusedBorder: border,
+                        isDense: true,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-          // Shoes Card
 
-          Expanded(
-            child: GestureDetector(
-              onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) {
-                    // Navigate ProductDetailsPage
-                    return ProductDetailsPage(product: products[0]);
-                  }),
-                );
-              },
-              // Shoes Image List
+            /// 🧩 FILTER CHIPS
+            SizedBox(
+              height: 90,
               child: ListView.builder(
-                  scrollDirection: Axis.vertical,
-                  itemCount: products.length,
-                  itemBuilder: (context, index) {
-                    final product = products[index];
-                    final productModel = ProductModel.fromJson(product);
+                scrollDirection: Axis.horizontal,
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                itemCount: filters.length,
+                itemBuilder: (context, index) {
+                  final filter = filters[index];
 
-                    return ProductCard(
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 6),
+                    child: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          selectedFilters = filter;
+                        });
+                      },
+                      child: Chip(
+                        backgroundColor: selectedFilters == filter
+                            ? Colors.greenAccent
+                            : const Color.fromRGBO(245, 247, 249, 1),
+                        label: Text(filter),
+                        labelStyle: const TextStyle(fontSize: 16),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 20,
+                          vertical: 15,
+                        ),
+                        side: const BorderSide(color: Colors.black45),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+
+            /// 👟 PRODUCT LIST
+            Expanded(
+              child: ListView.builder(
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                itemCount: products.length,
+                itemBuilder: (context, index) {
+                  final product = products[index];
+                  final productModel = ProductModel.fromJson(product);
+
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              ProductDetailsPage(product: products[index]),
+                        ),
+                      );
+                    },
+                    child: ProductCard(
                       title: productModel.title,
                       price: productModel.price,
                       image: productModel.imageUrl,
                       backgroundColor: index.isEven
                           ? const Color(0xFFD8F0FD)
                           : const Color(0xFFF5F7F9),
-                    );
-                  }),
+                    ),
+                  );
+                },
+              ),
             ),
-          )
-        ],
+          ],
+        ),
       ),
     );
   }
