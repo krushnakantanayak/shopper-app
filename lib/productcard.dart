@@ -29,11 +29,17 @@ class ProductCard extends StatelessWidget {
           Text('\$$price'),
           const SizedBox(height: 5),
           Center(
-            child: Image.asset(
-              image,
-              height: 175,
-            ),
-          ),
+              child: Image.asset(
+            image,
+            height: 120,
+            errorBuilder: (context, error, stackTrace) {
+              return const Icon(
+                Icons.image_not_supported,
+                size: 80,
+                color: Colors.grey,
+              );
+            },
+          )),
         ],
       ),
     );
