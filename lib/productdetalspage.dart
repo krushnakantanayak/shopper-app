@@ -60,6 +60,13 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
               data.imageUrl,
               height: 200,
               width: 200,
+              errorBuilder: (context, error, stackTrace) {
+                return const Icon(
+                  Icons.image_not_supported,
+                  size: 100,
+                  color: Colors.grey,
+                );
+              },
             ),
           ),
           const Spacer(flex: 2),

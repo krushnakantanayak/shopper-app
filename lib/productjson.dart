@@ -55,9 +55,9 @@ class CartModel {
 
   static CartModel fromJson(Map<String, dynamic> cartModel) {
     return CartModel(
-      id: cartModel['id'] as String,
+      id: cartModel['id'].toString(),
       title: cartModel['title'] as String,
-      price: cartModel['price'] as double,
+      price: (cartModel['price'] as num).toDouble(),
       company: cartModel['company'] as String,
       size: cartModel['size'] as int,
       imageUrl: cartModel['imageUrl'] as String,
@@ -95,11 +95,11 @@ class ProductModel {
 
   static ProductModel fromJson(Map<String, dynamic> data) {
     return ProductModel(
-      id: data['id'] as String,
+      id: data['id'].toString(), // ✅ FIX
       title: data['title'] as String,
-      price: data['price'] as double,
+      price: (data['price'] as num).toDouble(), // ✅ SAFER
       company: data['company'] as String,
-      sizes: data['sizes'] as List<int>,
+      sizes: List<int>.from(data['sizes']), // ✅ SAFER
       imageUrl: data['imageUrl'] as String,
     );
   }

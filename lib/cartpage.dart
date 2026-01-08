@@ -20,8 +20,12 @@ class CartPage extends StatelessWidget {
             return ListTile(
               subtitle: Text('Size: ${cartModel.size}'),
               leading: CircleAvatar(
-                backgroundImage: AssetImage(cartModel.imageUrl),
                 radius: 30,
+                child: Image.asset(
+                  cartModel.imageUrl,
+                  errorBuilder: (_, __, ___) =>
+                      const Icon(Icons.image_not_supported),
+                ),
               ),
               trailing: IconButton(
                 onPressed: () {
